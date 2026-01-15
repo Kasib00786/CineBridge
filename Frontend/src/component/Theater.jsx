@@ -11,6 +11,7 @@ import Navigation from "./Navigation";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import Footer from "./Footer";
 
 /* Fix Leaflet marker icons */
 delete L.Icon.Default.prototype._getIconUrl;
@@ -205,6 +206,7 @@ export default function Theater() {
           </MapContainer>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

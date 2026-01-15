@@ -1,51 +1,76 @@
-import React from 'react'
-import Login from './Login'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+
 export default function Signup() {
   return (
-    <div className='bg-[url(/background.jpg)] min-h-screen bg-cover bg-center'>
-    <div className='flex justify-between'>
-        <h1 className='font-bold text-3xl ml-10 mt-5 text-white'>CineBridge</h1>
-        <img src="./logo.png" alt="" className='w-15 h-15 mt-5'/>
-        <div>
-            <Link to="/"><button className='mr-5 mt-5 font-medium text-white underline hover:scale-105 transition delay-150 duration-250 ease-in-out'>Home</button></Link>
-            <Link to="/about"><button className='mr-10 mt-5 font-medium text-white hover:scale-105 transition delay-150 duration-250 ease-in-out'>About</button></Link>
-        </div>
-    </div>
-    <div className='w-80 h-90 bg-black/20 mt-20 mx-auto rounded-2xl shadow-lg p-5 pt-10 hover:scale-105 transition delay-150 duration-250 ease-in-out'>
-        <form className="flex flex-col space-y-4">
-                    <input
-                        type="name"
-                        placeholder="Username"
-                        className="px-4 py-3 rounded-full border border-gray-400 focus:outline-none bg-white"
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        className="px-4 py-3 rounded-full border border-gray-400 focus:outline-none bg-white"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="px-4 py-3 rounded-full border border-gray-400 focus:outline-none bg-white"
-                    />
-                    <Link to='/' className="bg-orange-950 flex justify-center transition delay-100 duration-150 ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-orange-900 text-white font-bold py-3 rounded-3xl"><input 
-                        type="submit"
-                        value="Sign up"
-                    /></Link>
-                </form>
+    <div className="relative min-h-screen bg-[url(/background.jpg)] bg-cover bg-center">
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/70" />
 
-                <div className="text-center mt-4 text-sm">
-                    <p className="mt-2 text-black">
-                        Have an account?{" "}
-                        <Link to='/'>
-                        <a href="#" className="text-orange-950 font-medium hover:underline">
-                            login
-                        </a>
-                        </Link>
-                    </p>
-                </div>
+      {/* TOP NAV */}
+      <div className="relative z-10 flex items-center justify-between px-10 py-6">
+        <h1 className="text-3xl font-extrabold text-yellow-500">
+          CineBridge
+        </h1>
+
+        <div className="flex gap-6 text-white font-medium">
+          <Link to="/" className="hover:text-yellow-400 transition">
+            Home
+          </Link>
+          <Link to="/about" className="hover:text-yellow-400 transition">
+            About
+          </Link>
+        </div>
+      </div>
+
+      {/* SIGNUP CARD */}
+      <div className="relative z-10 flex items-center justify-center mt-16 px-4">
+        <div className="w-full max-w-sm rounded-2xl p-8 bg-white/10 backdrop-blur-xl shadow-2xl border border-white/20 transition-all duration-500 hover:scale-[1.02]">
+
+          <h2 className="text-2xl font-bold text-white text-center mb-6">
+            Create Your Account 🎬
+          </h2>
+
+          <form className="flex flex-col space-y-4">
+            <input
+              type="text"
+              placeholder="Username"
+              className="px-4 py-3 rounded-full bg-white text-gray-800 outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+
+            <input
+              type="email"
+              placeholder="Email"
+              className="px-4 py-3 rounded-full bg-white text-gray-800 outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              className="px-4 py-3 rounded-full bg-white text-gray-800 outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+
+            <button
+              type="submit"
+              className="mt-4 bg-yellow-500 text-black font-semibold py-3 rounded-full hover:bg-yellow-400 transition hover:scale-105"
+            >
+              Sign Up
+            </button>
+          </form>
+
+          <div className="text-center mt-6 text-sm text-gray-200">
+            <p>
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-yellow-400 font-medium hover:underline"
+              >
+                Login
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-  )
+  );
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import Navigation from './Navigation'
+import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
 export default function Movie() {
      const movies = [
@@ -108,9 +110,9 @@ export default function Movie() {
             <div className="p-3 text-center">
               <h2 className="text-lg font-semibold text-white">{movie.name}</h2>
               <p className="text-gray-400 text-sm">{movie.category}</p>
-              <button className="mt-3 bg-yellow-500 hover:scale-105 text-black font-medium px-4 py-2 rounded-lg w-full sm:w-auto">
+              <Link to="/booknow"><button className="mt-3 bg-yellow-500 hover:scale-105 text-black font-medium px-4 py-2 rounded-lg w-full sm:w-auto">
                 Book Now
-              </button>
+              </button></Link>
             </div>
           </div>
         ))}
@@ -139,6 +141,7 @@ export default function Movie() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
 
     

@@ -6,6 +6,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Movie from './component/Movie'
 import Theater from './component/Theater'
 import About from './component/About'
+import BookNow from './component/BookNow'
 
 const App = () => {
   return <><BrowserRouter>
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/movies" element={<Movie/>}/>
           <Route path="/theater" element={<Theater/>}/>
           <Route path="/about" element={<About/>}/>
+          <Route path="/booknow" element={<BookNow/>}/>
           </Routes>
     </BrowserRouter>
   </>
