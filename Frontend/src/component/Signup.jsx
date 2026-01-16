@@ -1,7 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        "http://localhost:5000/api/auth/signup", // CineBridge backend
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Signup failed");
+      }
+
+      // ✅ Signup success → go to login
+      navigate("/login");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-[url(/background.jpg)] bg-cover bg-center">
       {/* DARK OVERLAY */}
@@ -31,30 +69,51 @@ export default function Signup() {
             Create Your Account 🎬
           </h2>
 
-          <form className="flex flex-col space-y-4">
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             <input
               type="text"
               placeholder="Username"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
               className="px-4 py-3 rounded-full bg-white text-gray-800 outline-none focus:ring-2 focus:ring-yellow-400"
             />
 
             <input
               type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
               className="px-4 py-3 rounded-full bg-white text-gray-800 outline-none focus:ring-2 focus:ring-yellow-400"
             />
 
             <input
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
               className="px-4 py-3 rounded-full bg-white text-gray-800 outline-none focus:ring-2 focus:ring-yellow-400"
             />
 
+            {error && (
+              <p className="text-red-400 text-sm text-center">
+                {error}
+              </p>
+            )}
+
             <button
               type="submit"
-              className="mt-4 bg-yellow-500 text-black font-semibold py-3 rounded-full hover:bg-yellow-400 transition hover:scale-105"
+              disabled={loading}
+              className={`mt-4 font-semibold py-3 rounded-full transition
+                ${
+                  loading
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-yellow-500 hover:bg-yellow-400 hover:scale-105 text-black"
+                }`}
             >
-              Sign Up
+              {loading ? "Creating account..." : "Sign Up"}
             </button>
           </form>
 
@@ -69,6 +128,7 @@ export default function Signup() {
               </Link>
             </p>
           </div>
+
         </div>
       </div>
     </div>

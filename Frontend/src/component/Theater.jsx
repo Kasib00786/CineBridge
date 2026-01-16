@@ -182,7 +182,7 @@ export default function Theater() {
         </div>
 
         {/* RIGHT: MAP */}
-        <div className="md:w-3/10 h-96 md:h-auto">
+        <div className="md:w-3/10 h-96 md:h-auto z-10">
           <MapContainer
             center={currentLocation.center}
             zoom={13}
